@@ -1,14 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Your Name</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jeffrey Yeung</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: #050816;
+      color: #e5e7eb;
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .sidebar-hitbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 52px;
+      z-index: 20;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 260px;
+      background: rgba(15, 23, 42, 0.97);
+      border-right: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: 8px 0 24px rgba(15, 23, 42, 0.9);
+      transform: translateX(-210px);
+      transition: transform 0.25s ease-out;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 20px;
+      z-index: 30;
+    }
+
+    .sidebar-hitbox:hover + .sidebar,
+    .sidebar:hover {
+      transform: translateX(0);
+    }
+
+    .sidebar-header {
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .sidebar-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .sidebar-tagline {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: #e5e7eb;
+      text-decoration: none;
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+      transition: background 0.2s ease-out, border-color 0.2s ease-out,
+        transform 0.15s ease-out;
+    }
+
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #38bdf8, #1d4ed8 55%, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .nav-link span {
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      background: rgba(55, 65, 81, 0.7);
+      border-color: rgba(129, 140, 248, 0.8);
+      transform: translateX(2px);
+    }
+
+    .nav-link:active {
+      transform: translateX(0);
+    }
+
+    .main {
+      flex: 1;
+      margin-left: 52px;
+      padding: 32px min(8vw, 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero {
+      max-width: 720px;
+    }
+
+    .hero-kicker {
+      font-size: 0.85rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #38bdf8, #a855f7, #22c55e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      max-width: 32rem;
+      color: #9ca3af;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    @media (max-width: 640px) {
+      .sidebar {
+        transform: translateX(-220px);
+      }
+
+      .sidebar-hitbox {
+        width: 36px;
+      }
+
+      .main {
+        margin-left: 36px;
+        padding: 24px 20px;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, world</h1>
-  <p>This is my GitHub Pages website.</p>
-  <p>NEW line</p>
-  <h1>New header</h2>
+  <div class="sidebar-hitbox"></div>
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <div class="sidebar-name">Jeffrey Yeung</div>
+      <div class="sidebar-tagline">Personal site</div>
+    </header>
+    <nav class="sidebar-nav">
+      <a class="nav-link" href="projects.html">
+        <div class="nav-icon">P</div>
+        <span>Projects</span>
+      </a>
+      <a class="nav-link" href="ideas.html">
+        <div class="nav-icon">I</div>
+        <span>Ideas</span>
+      </a>
+      <a class="nav-link" href="contact.html">
+        <div class="nav-icon">@</div>
+        <span>Contact</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <section class="hero">
+      <div class="hero-kicker">Welcome</div>
+      <h1 class="hero-title">
+        Hi, I'm <span>Jeffrey Yeung</span>.
+      </h1>
+      <p class="hero-subtitle">
+        This is a small personal space for my projects, ideas, and ways to get
+        in touch. Use the left edge of the screen to reveal the sidebar and
+        navigate around.
+      </p>
+      <div class="hero-meta">
+        <div class="pill">Based on GitHub Pages</div>
+        <div class="pill">Minimal & fast</div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
