@@ -47,9 +47,78 @@
       z-index: 30;
     }
 
-    .sidebar-hitbox:hover + .sidebar,
-    .sidebar:hover {
+    /* Hover behaviour for pointer devices */
+    @media (hover: hover) and (pointer: fine) {
+      .sidebar-hitbox:hover + .sidebar,
+      .sidebar:hover {
+        transform: translateX(0);
+      }
+    }
+
+    /* Click / tap behaviour */
+    .sidebar-open .sidebar {
       transform: translateX(0);
+    }
+
+    .sidebar-toggle {
+      position: fixed;
+      top: 16px;
+      left: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5e7eb;
+      z-index: 40;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
+    }
+
+    .sidebar-toggle-icon {
+      width: 16px;
+      height: 12px;
+      position: relative;
+    }
+
+    .sidebar-toggle-icon span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      transition: transform 0.2s ease-out, opacity 0.2s ease-out, top 0.2s ease-out,
+        bottom 0.2s ease-out;
+    }
+
+    .sidebar-toggle-icon span:nth-child(1) {
+      top: 0;
+    }
+
+    .sidebar-toggle-icon span:nth-child(2) {
+      top: 5px;
+    }
+
+    .sidebar-toggle-icon span:nth-child(3) {
+      bottom: 0;
+    }
+
+    .sidebar-open .sidebar-toggle-icon span:nth-child(1) {
+      top: 5px;
+      transform: rotate(45deg);
+    }
+
+    .sidebar-open .sidebar-toggle-icon span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .sidebar-open .sidebar-toggle-icon span:nth-child(3) {
+      bottom: 5px;
+      transform: rotate(-45deg);
     }
 
     .sidebar-header {
@@ -190,6 +259,13 @@
   </style>
 </head>
 <body>
+  <button class="sidebar-toggle" type="button" aria-label="Toggle navigation">
+    <div class="sidebar-toggle-icon" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </button>
   <div class="sidebar-hitbox"></div>
   <aside class="sidebar">
     <header class="sidebar-header">
@@ -229,5 +305,26 @@
       </div>
     </section>
   </main>
+  <script>
+    (function () {
+      var toggle = document.querySelector(".sidebar-toggle");
+      var sidebar = document.querySelector(".sidebar");
+
+      if (!toggle || !sidebar) return;
+
+      toggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+        document.body.classList.toggle("sidebar-open");
+      });
+
+      sidebar.addEventListener("click", function (event) {
+        event.stopPropagation();
+      });
+
+      document.addEventListener("click", function () {
+        document.body.classList.remove("sidebar-open");
+      });
+    })();
+  </script>
 </body>
 </html>
