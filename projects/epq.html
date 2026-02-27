@@ -111,6 +111,39 @@
       text-decoration: underline;
     }
 
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5e7eb;
+      z-index: 60;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
+      font-size: 16px;
+    }
+
+    body[data-theme="light"] {
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    body[data-theme="light"] .top-bar {
+      background: #ffffff;
+      border-bottom-color: #e5e7eb;
+    }
+
+    body[data-theme="light"] .page-subtitle {
+      color: #4b5563;
+    }
+
     @media (max-width: 640px) {
       .top-bar {
         padding: 12px 16px;
@@ -146,6 +179,47 @@
       </iframe>
     </div>
   </main>
+  <button class="theme-toggle" type="button" aria-label="Switch to light mode">☀︎</button>
+  <script>
+    (function () {
+      var storageKey = "jy-theme";
+      var body = document.body;
+
+      function applyTheme(theme) {
+        body.setAttribute("data-theme", theme);
+        var btn = document.querySelector(".theme-toggle");
+        if (!btn) return;
+        if (theme === "light") {
+          btn.textContent = "☾";
+          btn.setAttribute("aria-label", "Switch to dark mode");
+        } else {
+          btn.textContent = "☀︎";
+          btn.setAttribute("aria-label", "Switch to light mode");
+        }
+      }
+
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var saved = (typeof localStorage !== "undefined" && localStorage.getItem(storageKey)) || null;
+      var initial = saved || (prefersDark ? "dark" : "light");
+      applyTheme(initial);
+
+      document.addEventListener("click", function (event) {
+        var target = event.target.closest(".theme-toggle");
+        if (!target) return;
+        event.preventDefault();
+        var current = body.getAttribute("data-theme") === "light" ? "light" : "dark";
+        var next = current === "light" ? "dark" : "light";
+        try {
+          if (typeof localStorage !== "undefined") {
+            localStorage.setItem(storageKey, next);
+          }
+        } catch (e) {}
+        applyTheme(next);
+      });
+    })();
+  </script>
 </body>
 </html>
 
