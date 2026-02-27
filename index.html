@@ -49,9 +49,14 @@
 
     /* Hover behaviour for pointer devices */
     @media (hover: hover) and (pointer: fine) {
-      .sidebar-hitbox:hover + .sidebar,
-      .sidebar:hover {
+      body:not(.sidebar-open) .sidebar-hitbox:hover + .sidebar,
+      body:not(.sidebar-open) .sidebar:hover {
         transform: translateX(0);
+      }
+
+      body:not(.sidebar-open) .sidebar-hitbox:hover + .sidebar ~ .sidebar-toggle,
+      body:not(.sidebar-open) .sidebar:hover ~ .sidebar-toggle {
+        transform: translateX(-60px);
       }
     }
 
@@ -76,6 +81,7 @@
       z-index: 40;
       cursor: pointer;
       box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
+      transition: left 0.25s ease-out, transform 0.25s ease-out;
     }
 
     .sidebar-toggle-icon {
@@ -260,6 +266,11 @@
       font-size: 16px;
     }
 
+    .sidebar-open .sidebar-toggle {
+      left: 280px;
+      transform: none;
+    }
+
     body[data-theme="light"] {
       background: #f3f4f6;
       color: #111827;
@@ -300,13 +311,6 @@
   </style>
 </head>
 <body>
-  <button class="sidebar-toggle" type="button" aria-label="Toggle navigation">
-    <div class="sidebar-toggle-icon" aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </button>
   <div class="sidebar-hitbox"></div>
   <aside class="sidebar">
     <header class="sidebar-header">
@@ -328,6 +332,13 @@
       </a>
     </nav>
   </aside>
+  <button class="sidebar-toggle" type="button" aria-label="Toggle navigation">
+    <div class="sidebar-toggle-icon" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </button>
 
   <main class="main">
     <section class="hero">
