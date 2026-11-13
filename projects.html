@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Selected robotics, software, and research projects by Jeffrey Yeung." />
   <title>Projects · Jeffrey Yeung</title>
   <style>
     * {
@@ -65,6 +66,7 @@
     .page-title {
       font-size: 1.5rem;
       font-weight: 600;
+      margin-right: 28px;
     }
 
     .page-subtitle {
@@ -79,11 +81,6 @@
       font-size: 0.98rem;
     }
 
-    .intro {
-      max-width: 760px;
-      margin-bottom: 16px;
-    }
-
     .project-list {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -92,66 +89,37 @@
     }
 
     .project-card {
-      padding: 10px 12px;
+      padding: 18px;
       border-radius: 14px;
       border: 1px solid rgba(55, 65, 81, 0.9);
       background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 55%),
         rgba(15, 23, 42, 0.96);
-      height: 100%;
-      min-height: 320px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-    }
-
-    .project-preview {
-      flex: 3;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: #020617;
-    }
-
-    .project-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .project-text {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      justify-content: flex-start;
-    }
-
-    .project-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
-        border-color 0.2s ease-out, background 0.2s ease-out;
-    }
-
-    .project-link:hover .project-card {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.9);
-      border-color: rgba(129, 140, 248, 0.9);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 55%),
-        rgba(15, 23, 42, 1);
+      gap: 6px;
     }
 
     .project-title {
-      font-weight: 500;
-      margin-bottom: 4px;
+      font-size: 1.12rem;
+      font-weight: 600;
+      line-height: 1.35;
     }
 
     .project-meta {
       font-size: 0.8rem;
       color: #9ca3af;
-      margin-bottom: 4px;
+    }
+
+    .project-link {
+      align-self: flex-start;
+      margin-top: auto;
+      padding-top: 6px;
+      color: #a5b4fc;
+      text-underline-offset: 0.2em;
+    }
+
+    .project-link:hover {
+      color: #c7d2fe;
     }
 
     .theme-toggle {
@@ -203,10 +171,18 @@
       border-color: #e5e7eb;
     }
 
-    body[data-theme="light"] .project-link:hover .project-card {
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.15);
-      border-color: #a5b4fc;
-      background: #f9fafb;
+    body[data-theme="light"] .project-link {
+      color: #3730a3;
+    }
+
+    body[data-theme="light"] .project-link:hover {
+      color: #4338ca;
+    }
+
+    @media (max-width: 1000px) {
+      .project-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 640px) {
@@ -227,35 +203,61 @@
         ←
       </a>
       <div>
-        <div class="page-title">Projects</div>
-        <div class="page-subtitle">A few things I’ve worked on / am exploring.</div>
+        <h1 class="page-title">Projects</h1>
+        <p class="page-subtitle">Software, engineering, and research</p>
       </div>
     </header>
 
     <main class="content">
-      <p class="intro">
-        Add your favourite work here – side projects, experiments, or anything
-        you’re proud of. You can edit this page directly in GitHub later.
-      </p>
+      <div class="project-list">
+        <article class="project-card">
+          <h2 class="project-title">Tabby</h2>
+          <p class="project-meta">Safari extension · Developer preview</p>
+          <p>I built Tabby to find open Safari tabs, organise them into workspaces,
+            and save snapshots for later. Meta AI can suggest groups.</p>
+          <a class="project-link" href="https://github.com/Jyosnorkel/tabby">Tabby source and releases</a>
+        </article>
 
-      <section class="project-list">
-        <a class="project-link" href="projects/epq.html">
-          <article class="project-card">
-            <div class="project-preview">
-              <img src="projects/epq-preview.jpg" alt="EPQ paper preview image placeholder" />
-            </div>
-            <div class="project-text">
-              <div class="project-title">EPQ Paper</div>
-              <div class="project-meta">Research project · PDF embedded</div>
-              <p>
-                Add a JPG preview named <strong>epq-preview.jpg</strong> inside the
-                <strong>projects/</strong> folder to customise this image. Click anywhere
-                on this block to open and read the full document.
-              </p>
-            </div>
-          </article>
-        </a>
-      </section>
+        <article class="project-card">
+          <h2 class="project-title">Lessonboard</h2>
+          <p class="project-meta">Tutoring website</p>
+          <p>A shared whiteboard for one-to-one tutoring. Tutor and student can
+            annotate PDFs and images together and export the lesson as a PDF.</p>
+          <a class="project-link" href="https://tutoring-whiteboard.jeffrey-ysh.workers.dev/">Visit Lessonboard</a>
+        </article>
+
+        <article class="project-card">
+          <h2 class="project-title">MyCamCribs</h2>
+          <p class="project-meta">Local study app · Next.js and SQLite</p>
+          <p>I built a Cambridge Engineering revision app that draws random exam
+            questions by paper and year, with worked solutions and topic-based notes alongside.</p>
+        </article>
+
+        <article class="project-card">
+          <h2 class="project-title">M109 Integrated Design Project</h2>
+          <p class="project-meta">Robotics · Team project</p>
+          <p>Frank Zhu and I worked on the software for a robot that surveyed racks,
+            picked up packages, and delivered them. We used a graph to plan routes and
+            sensor feedback to follow the track.</p>
+          <a class="project-link" href="https://github.com/Jyosnorkel/M109-IDP-documentation">M109 code and documentation</a>
+        </article>
+
+        <article class="project-card">
+          <h2 class="project-title">Cambridge Battlecode 2026</h2>
+          <p class="project-meta">Programming competition · Python</p>
+          <p>Strategy bots for a mining and logistics game. I experimented with
+            pathfinding, supply routes, and coordination through shared map markers.</p>
+          <a class="project-link" href="https://github.com/Jyosnorkel/2026_cam_battlecode">Battlecode source and strategy notes</a>
+        </article>
+
+        <article class="project-card">
+          <h2 class="project-title">Electric vs. Chemical Propulsion</h2>
+          <p class="project-meta">Extended Project Qualification · Research paper</p>
+          <p>I compared electric and chemical propulsion for future space missions,
+            looking at launch, in-space manoeuvres, efficiency, and propellant trade-offs.</p>
+          <a class="project-link" href="projects/epq.html">Read the propulsion paper</a>
+        </article>
+      </div>
     </main>
   </div>
   <button class="theme-toggle" type="button" aria-label="Switch to light mode">☀︎</button>

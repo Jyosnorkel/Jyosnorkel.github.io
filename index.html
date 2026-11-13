@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Engineering and software projects by Jeffrey Yeung, from robotics and browser tools to spacecraft propulsion research." />
   <title>Jeffrey Yeung</title>
   <style>
     * {
@@ -203,14 +204,6 @@
       max-width: 720px;
     }
 
-    .hero-kicker {
-      font-size: 0.85rem;
-      letter-spacing: 0.17em;
-      text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 10px;
-    }
-
     .hero-title {
       font-size: clamp(2.5rem, 4vw, 3.2rem);
       font-weight: 700;
@@ -233,18 +226,24 @@
       margin-bottom: 22px;
     }
 
-    .hero-meta {
+    .hero-links {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      font-size: 0.85rem;
-      color: #9ca3af;
     }
 
-    .pill {
-      padding: 4px 10px;
+    .hero-link {
+      padding: 8px 14px;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.6);
+      color: inherit;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .hero-link:hover {
+      border-color: #818cf8;
+      text-decoration: underline;
     }
 
     .theme-toggle {
@@ -283,8 +282,6 @@
     }
 
     body[data-theme="light"] .hero-subtitle,
-    body[data-theme="light"] .hero-meta,
-    body[data-theme="light"] .pill,
     body[data-theme="light"] .sidebar-tagline {
       color: #4b5563;
     }
@@ -303,10 +300,6 @@
 
     body[data-theme="light"] .sidebar-toggle-icon span {
       background: #111827;
-    }
-
-    body[data-theme="light"] .pill {
-      border-color: #d1d5db;
     }
 
     @media (max-width: 640px) {
@@ -358,18 +351,16 @@
 
   <main class="main">
     <section class="hero">
-      <div class="hero-kicker">Welcome</div>
       <h1 class="hero-title">
         Hi, I'm <span>Jeffrey Yeung</span>.
       </h1>
       <p class="hero-subtitle">
-        This is a small personal space for my projects, ideas, and ways to get
-        in touch. Use the left edge of the screen to reveal the sidebar and
-        navigate around.
+        I study engineering at Cambridge. My projects range from software for an
+        autonomous delivery robot to browser tools for studying and tutoring.
       </p>
-      <div class="hero-meta">
-        <div class="pill">Based on GitHub Pages</div>
-        <div class="pill">Minimal & fast</div>
+      <div class="hero-links">
+        <a class="hero-link" href="projects.html">View projects</a>
+        <a class="hero-link" href="contact.html">Get in touch</a>
       </div>
     </section>
   </main>
